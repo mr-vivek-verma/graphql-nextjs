@@ -3,7 +3,13 @@
 // import Link from 'next/link';
 // import Date from '../components/date';
 // import { Navbar } from '../components/navbar/navbar';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 import { GraphQLClient, gql  } from 'graphql-request';
+// import navbar from "../components/navbar/navbar"
 
 
 export const getStaticProps = async () => {
@@ -15,8 +21,8 @@ export const getStaticProps = async () => {
   hotelX {
     search(
       criteria: { 
-        checkIn: "2022-10-27",
-        checkOut: "2022-10-28",
+        checkIn: "2022-11-01",
+        checkOut: "2022-11-06",
         occupancies: [{ paxes: [{age: 18}, {age: 30}] }],
         hotels: ["1"],
         currency: "EUR",
@@ -62,9 +68,9 @@ export const getStaticProps = async () => {
             age
           }
         }
-        rooms {
+        rooms {                                           
           occupancyRefId
-          code
+          code                                                                                                                   
           description
           refundable
           roomPrice {
@@ -229,21 +235,47 @@ export const getStaticProps = async () => {
   }
 }
 
-export default function Home({data}) {
+export default function ActionAreaCard({data}) {
    console.log("data", data.hotelX.search)
   return (
     <> 
       <div>
+             
         <h1>TravelX</h1>
-        </div>
+        </div>/
       <div>{data && data.hotelX.search && data.hotelX.search.options.map((hotel) => {
         return (
-          <>        
-          <h4 key={hotel.id}>Hotel Name: {hotel.hotelName}</h4>
+          <>  
+          
+    <Card sx={{ maxWidth: 440,display:'inline-block' }}>
+      <CardActionArea sx={{display:'flex', justifyContent:"center", alignItems:"center"}}>
+        <CardMedia
+          component="img"
+          height="150"
+          src='https://m.economictimes.com/thumb/msid-90724647,width-1254,height-836,resizemode-4,imgsize-28786/indian-hotels.jpg'
+          alt="hotel img"
+          
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h6" component="div">
+          <h6 key={hotel.id}>Hotel Name: {hotel.hotelName}</h6>
+          </Typography>
+          <Typography variant="div" color="text.secondary">
           <span>Payment Type: {hotel.paymentType}</span>
           <div>RateRules: {hotel.rateRules}</div>
           <div>currency: {hotel.price.currency}</div>
-        <div></div>  
+           
+          </Typography>       
+        </CardContent>
+      </CardActionArea>
+    </Card>
+  
+       
+          {/* <h4 key={hotel.id}>Hotel Name: {hotel.hotelName}</h4>
+          <span>Payment Type: {hotel.paymentType}</span>
+          <div>RateRules: {hotel.rateRules}</div>
+          <div>currency: {hotel.price.currency}</div>
+        <div></div>   */}
           </>
         )
        })}</div>
