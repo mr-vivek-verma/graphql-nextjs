@@ -1,0 +1,70 @@
+hotelX {
+    booking(criteria: {accessCode: "0", language: "es", typeSearch: REFERENCES, references: {references: [{supplier: "975723"}], hotelCode: "1", currency: "EUR"}}, settings: {client: "client_demo", auditTransactions: true, context: "HOTELTEST", testMode: true, timeout: 18000}) {
+      auditData {
+        transactions {
+          request
+          response
+        }
+      }
+      bookings {
+        billingSupplierCode
+        reference {
+          client
+          supplier
+          hotel
+          bookingID
+        }
+        holder {
+          name
+          surname
+        }
+        status
+        hotel {
+          hotelCode
+          hotelName
+          boardCode
+          occupancies {
+            id
+            paxes {
+              age
+            }
+          }
+          rooms {
+            occupancyRefId
+            code
+            description
+            price {
+              currency
+              net
+              exchange {
+                currency
+                rate
+              }
+            }
+          }
+        }
+        cancelPolicy {
+          refundable
+          cancelPenalties {
+            hoursBefore
+            penaltyType
+            currency
+            value
+          }
+        }
+        remarks
+        payable
+      }
+      errors {
+        code
+        type
+        description
+      }
+      warnings {
+        code
+        type
+        description
+      }
+    }
+  }
+}
