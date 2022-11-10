@@ -18,7 +18,7 @@ export const getStaticProps = async () => {
   const endpoint = process.env.PREVIEW_CH_ENDPOINT;
   const graphQLClient = new GraphQLClient(endpoint);
   graphQLClient.setHeader("Authorization", "Apikey 8626cf56-e364-4fd1-4fe0-311e23ac6355")
-  
+ 
 
 
   const query = gql`{
@@ -123,6 +123,6 @@ function createData(name, calories, fat, carbs, protein) {
     </TableContainer>
         </>
     )
-}
+  }
 
-export default Admin;
+export default Admin;                                                           

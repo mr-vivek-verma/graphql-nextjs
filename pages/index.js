@@ -29,8 +29,8 @@ export const getStaticProps = async () => {
   hotelX {
     search(                                         
       criteria: { 
-        checkIn: "2022-11-09",
-        checkOut: "2022-11-10",
+        checkIn: "2022-11-10",
+        checkOut: "2022-11-12",
         occupancies: [{ paxes: [{age: 18}, {age: 30}] }],
         hotels: ["1"],
         currency: "EUR",
