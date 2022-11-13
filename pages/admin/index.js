@@ -18,7 +18,7 @@ export const getStaticProps = async () => {
   const endpoint = process.env.PREVIEW_CH_ENDPOINT;
   const graphQLClient = new GraphQLClient(endpoint);
   graphQLClient.setHeader("Authorization", "Apikey 8626cf56-e364-4fd1-4fe0-311e23ac6355")
- 
+  
 
 
   const query = gql`{
@@ -28,39 +28,38 @@ export const getStaticProps = async () => {
         node {
           accessData {
             name
-            isActive
-            code
+            isActive    
+            code         
           }
           error {
-            code
-            type
-            description
+            code  
+            type      
+            description     
           }
         }
-      }
+      } 
     }
   }
  }`
   
   const data = await graphQLClient.request(query)
   return {
-    props: {   
-      data
-    }
+    props: {
+      data  
+    }  
   }
 }
 
 const filterData = "";
 const filter = "";
-
 const Admin = ({ data }) => {
   console.log("from admin", data)
   const [input, setInput] = useState("");
   const handleChange = (e) => {
     e.preventDefault();
   setInput(e.target.value)
-  }
-  
+  } 
+                                                   
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -70,6 +69,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
   },
 }));
+
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd)': {
@@ -99,7 +99,7 @@ function createData(name, calories, fat, carbs, protein) {
            name="Input" />
          <Button>Submit</Button>
        </div>
-        <hr />
+        <hr/>
         <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -107,15 +107,15 @@ function createData(name, calories, fat, carbs, protein) {
              <StyledTableCell align="left">Name</StyledTableCell>
             <StyledTableCell align="right">Code&nbsp;()</StyledTableCell>
             <StyledTableCell align="right">Active&nbsp;()</StyledTableCell>
-                    </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.admin.accesses.edges.map((row) => (
+            </TableRow>                                                                    
+        </TableHead>                                                                                                                                                                                                                                                                                                                                  
+        <TableBody>                                                                                                                                                                                                                                                                            
+          {data.admin.accesses.edges.map((row) => (                                           
             <StyledTableRow key={row.node.accessData.name}>
              <StyledTableCell align="left">{row.node.accessData.name}</StyledTableCell>
               <StyledTableCell align="right">{row.node.accessData.code}</StyledTableCell>
               <StyledTableCell align="right">{row.node && row.node.accessData.isActive ? "Yes" : "No"}</StyledTableCell>
-             
+              
             </StyledTableRow>
           ))}
         </TableBody>

@@ -29,13 +29,13 @@ export const getStaticProps = async () => {
   hotelX {
     search(                                         
       criteria: { 
-        checkIn: "2022-11-10",
-        checkOut: "2022-11-12",
+        checkIn: "2022-11-13",
+        checkOut: "2022-11-14",
         occupancies: [{ paxes: [{age: 18}, {age: 30}] }],
         hotels: ["1"],
         currency: "EUR",
         market: "ES",
-        language: "es",        
+        language: "es",                                                                      
         nationality: "ES"
       },
       settings: {
@@ -283,7 +283,8 @@ export default function ActionAreaCard({data}) {
           <div>RateRules: {tel.rateRules ? tel.rateRules : "NA"}</div>
           <div style={{ color: "#5E2125" }}>Currency: {tel.price.currency}</div>            
           <div style={{margin:"10px"}}>    
-          <Link href="/detailPage">More Details...</Link>                             
+          <Link href="/detailPage">More Details...</Link>    
+          <Link href="/admin">Admin</Link>                           
           </div>       
           </Typography>                                                   
         </CardContent>                                                                                
