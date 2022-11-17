@@ -6,7 +6,7 @@ const DetailPage = () => {
   const [data, setData] = useState("");
   useEffect(() => {
     setData(JSON.parse(localStorage.getItem("Detail")));
-  }, []);
+  }, []); 
 
   const handleclear = () => {
     localStorage.clear();
@@ -31,7 +31,7 @@ const DetailPage = () => {
             background: "#C16315",
             margin: "10px",
             padding: "10px",
-            color: "#C16365",
+            color: "#4633FF",
             display: "flex",
           }}
         >
@@ -70,7 +70,7 @@ const DetailPage = () => {
               <div style={{ color: "#5E2121" }}>
                 Currency: {data.price ? data.price.currency : "USD"}
               </div>
-              <div>
+              <div> 
                 Cancellation Policy:{" "}
                 {data.cancelPolicy ? "50% Refundable" : "NA"}
               </div>

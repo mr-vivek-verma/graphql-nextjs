@@ -11,6 +11,7 @@ import { CardActionArea } from '@mui/material';
 import { GraphQLClient, gql  } from 'graphql-request';
 import Link from 'next/link';
 import { useState } from 'react';
+import { NavigateBefore } from '@material-ui/icons';
 // import navbar from "../components/navbar/navbar"
 
    
@@ -21,6 +22,7 @@ import { useState } from 'react';
                                                       
                       
 export const getStaticProps = async () => {
+ 
   const endpoint = process.env.PREVIEW_CH_ENDPOINT;
   const graphQLClient = new GraphQLClient(endpoint);
   graphQLClient.setHeader("Authorization", "Apikey 8626cf56-e364-4fd1-4fe0-311e23ac6355")
@@ -29,7 +31,7 @@ export const getStaticProps = async () => {
   hotelX {
     search(                                         
       criteria: { 
-        checkIn: "2022-11-20",
+        checkIn: "2022-11-22",
         checkOut: "2022-12-01",
         occupancies: [{ paxes: [{age: 18}, {age: 30}] }],
         hotels: ["1"],
@@ -243,13 +245,15 @@ export const getStaticProps = async () => {
   }
 }
 
+
 export default function ActionAreaCard({data}) {
    console.log("data", data.hotelX.search)
    
    const [hotel, SetHotel] = useState(false);
-  const handleclick = () => {
+
+  const handleclick = (tel) => {
     SetHotel(true);
-    
+    localStorage.setItem("Detail",JSON.stringify(tel))
     
   }
   return (
@@ -270,13 +274,13 @@ export default function ActionAreaCard({data}) {
           height="150"
           src='https://m.economictimes.com/thumb/msid-90724647,width-1254,height-836,resizemode-4,imgsize-28786/indian-hotels.jpg'
           alt="hotel img"
-          
+         
         />
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
           <h6 key={tel.id}>Hotel Name: {tel.hotelName}</h6>
           </Typography>
-          <Typography variant="div" color="text.secondary"  onClick={(e) => {handleclick(e) }}>
+          <Typography variant="div" color="text.secondary"  onClick={(e) => {handleclick(tel) }}>
           
           <span>Payment Type: {tel.paymentType}</span>
           <div>RateRules: {tel.rateRules}</div>
